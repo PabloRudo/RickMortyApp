@@ -5,7 +5,7 @@ sealed class ResultError : Exception()
 object Empty : ResultError()
 
 sealed class RetrofitError : ResultError() {
-    object EmptyBody : ResultError()
+    object EmptyBody : RetrofitError()
     class HttpException(val description: String) : RetrofitError()
     class Network(val description: String) : RetrofitError()
     class Timeout(val description: String) : RetrofitError()
@@ -26,4 +26,5 @@ sealed class HttpCodeError : ResultError() {
 
 object NoInternetError : ResultError()
 
-fun ResultError.isEmpty(): Boolean = this is Empty
+val ResultError.isEmpty: Boolean
+    get() = this is Empty

@@ -25,9 +25,7 @@ class MainViewModel @Inject constructor(
     private val getCharactersUseCase: GetCharactersUseCase
 ) : ViewModel() {
 
-    val uiState by lazy {
-        MutableStateFlow(CharactersUiState(isLoading = true))
-    }
+    val uiState = MutableStateFlow(CharactersUiState(isLoading = true))
 
     init {
         viewModelScope.launch {
